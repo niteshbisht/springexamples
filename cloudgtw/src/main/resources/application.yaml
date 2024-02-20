@@ -1,0 +1,33 @@
+spring:
+  jmx:
+    enabled: false
+  cloud:
+    gateway:
+      default-filters:
+      routes:
+      # =====================================
+      # to run server
+      # $ wscat --listen 9000
+      # to run client
+      # $ wscat --connect ws://localhost:8080/echo
+      - id: redirect
+        uri: http://localhost:5003
+        order: 9000
+        predicates:
+        - Path=/redirect
+      # =====================================
+      - id: apirtr
+        uri: http://localhost:5003
+        order: 9000
+        predicates:
+        - Path=/api/**
+
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.http.server.reactive: DEBUG
+    org.springframework.web.reactive: DEBUG
+    reactor.ipc.netty: DEBUG
+    reactor.netty: DEBUG
+
+management.endpoints.web.exposure.include: '*'
