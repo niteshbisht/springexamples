@@ -1,0 +1,17 @@
+syntax = "proto3";
+package com.spr.restapi.driverapp;
+option java_package = "com.spr.restapi.driverapp";
+option java_outer_classname = "ProtobufRideShareApp";
+
+message Customer {
+	int32 id = 1;
+	string name = 2;
+	string email = 3;
+	string phone = 4;
+}
+
+message Driver {
+	int32 driverId = 1;
+	string vehicleReg = 2;
+	string phone = 3;
+}
